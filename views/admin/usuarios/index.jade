@@ -1,0 +1,29 @@
+extends ../layoutAdmin.jade
+block contenido
+  div(class="contenido")
+    div(class="right-align" style="margin-top: 4.5em")
+      a(href="/admin/usuarios/nuevo")
+          i(class="icon-gray icon-mas icon-tableHeader")
+    table(class="tablas")
+      thead
+        tr
+          th Nombre
+          th Nombre de Usuario
+          th Correo Electrónico
+          th Acceso
+          th Acciones
+      tbody
+        each usuario in usuarios
+          tr
+            td= usuario.nombre + " " + usuario.apellido
+            td= usuario.username
+            td= usuario.email
+            td= usuario.acceso
+            td
+              a(href="/admin/usuarios/#{usuario._id}/editar")
+                i(class="icon-darkgray icon-opciones icon-table")
+              form(action="/admin/usuarios/#{usuario._id}?_method=DELETE" class="form-btn", method="POST")
+                button(type="submit" class="icon-btn")
+                  i(class="icon-darkgray icon-salir")
+                
+          

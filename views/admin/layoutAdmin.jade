@@ -1,0 +1,46 @@
+doctype html
+html(lang="es")
+  head
+    title Viport Partners
+    meta(charset="utf-8")
+    link(rel="stylesheet", href="/public/css/app.css")
+    link(href="//fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet")
+    link(rel="stylesheet", href="/public/icons/css/icons-viport.css")
+    link(rel="icon", href="/public/img/favicon.ico")
+  body
+    div(class="container")
+      header
+        h2= pageName
+        div(class="header-icons")
+          i(class="icon-pink icon-0" style="cursor:pointer" onclick="openNotifications()")
+          i(class="icon-gray icon-buscar" style="cursor:pointer")
+      div(class="main-nav")
+          nav
+            div(class="main-header")
+              a(href="/admin")
+                img(src="/public/img/viportLogo.png", alt="Logo")
+            ul(style="height: 78%;")
+              li 
+                a(href="/admin/tablero")
+                  span 
+                    i(class="icon-white icon-fotostodas")
+                  span Tableros
+              li 
+                a(href="/admin/usuarios") 
+                  span 
+                    i(class="icon-white icon-usuario")
+                  span Usuarios
+            ul(class="bottom-nav")
+              li
+                a(href="/home") 
+                  span 
+                    i(class="icon-white icon-regresar")
+                  span Menú Principal
+      div(class="notifications" id="notifications")
+        nav
+          h3 Notificaciones
+          i(class="icon-gray icon-continuar" style="cursor:pointer" onclick="closeNotifications()")
+    block contenido
+    script(src="/public/js/layout.js")
+
+      

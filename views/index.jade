@@ -1,0 +1,25 @@
+doctype html
+html(lang="es")
+  head
+    title Viport Partners
+    meta(charset="utf-8")
+    link(rel="stylesheet", href="/public/css/app.css")
+    link(href="//fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet")
+    link(rel="stylesheet", href="/public/icons/css/icons-viport.css")
+    link(rel="icon", href="../public/img/favicon.ico")
+  body
+    div(class="header-index")
+      img(src="/public/img/viportLogo.png", alt="logo")
+    div(class="index")
+      h2 Iniciar sesión
+      form(method="POST", action="/sessions")
+        div(class="login")
+          div(class="login-form")
+            div
+              label(for="username") Nombre de Usuario
+              input(id="username", type="text", name="username", placeholder="Nombre de Usuario")
+            div
+              label(for="password") Contraseña 
+              input(id="password", type="password", name="password", placeholder="Contraseña")
+          button(type="submit" class="icon-btn")
+            i(class="icon-green icon-continuar" style="font-size: 2.5em")

@@ -1,0 +1,83 @@
+@import "../1-Base/vars"
+
+.opciones
+  width: 45em
+  display: flex
+  margin: 10em 0 0 10em
+  .botones-inferiores
+  .opciones-nav
+    font-weight: 300
+    h4
+      font-weight: 400
+      color: $gris-titulos
+      margin: 0
+      padding: 0 0 0 .8em
+    ul
+      margin-top: .75em
+      padding: 0
+      color: $gris-neutro
+      list-style-type: none
+      li
+        margin-bottom: .5em
+        cursor: pointer
+        padding: 0 0 0 .8em
+      .active
+        border-left: 4px solid $verde
+
+  .form-opc
+    height: auto
+    width: 27.5em
+    margin: 0 0 0 3.5em
+    background-color: white
+    padding: 2em 5em 2em 2em
+    box-sizing: border-box
+    color: $gris-neutro
+    font-weight: 300
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1)
+    .formGroup
+  input[type=text], input[type=password], input[type=email]
+    width: 100%
+    height: 2.5em
+    padding: 12px 10px
+    margin: .5em 0 1.1em 0
+    border: 1px solid #ccc
+    box-sizing: border-box
+    font-weight: 300
+    color: $gris-neutro
+  select
+    @extend input[type=text]
+    padding: 0 .6em
+  input[type=submit]
+    width: 10em
+    height: 2.5em
+    border: 1px solid $verde
+    font-size: .85em
+    margin: 1.5em 0 1.5em 1.25em
+    text-decoration: none
+    cursor: pointer
+  .btn-relleno
+    background-color: $verde
+    color: white
+  .btn-borde
+    background-color: inherit
+    color: $gris-neutro
+
+.new-user
+  @extend .opciones
+  margin: 5em 0 0 16em
+  .form-user
+    @extend .form-opc
+    height: auto
+
+.icon-btn
+  background-color: inherit
+  background-repeat: no-repeat
+  border: none
+  cursor:pointer
+  overflow: hidden
+  outline:none
+  i
+    font-size: 1em
+
+.form-btn
+  display: inline-block

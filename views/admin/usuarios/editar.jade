@@ -1,0 +1,26 @@
+extends ../layoutAdmin.jade
+block contenido
+  div(class="contenido")
+    div(class="new-user")
+      form(method="POST", action="/admin/usuarios/#{usuario.id}?_method=PUT")
+        div(class="form-user")
+          div
+            label(for="name") Nombre
+            input(id="name", type="text", name="name", placeholder="Nombre", value="#{usuario.nombre}")
+          div
+            label(for="apellido") Apellido
+            input(id="apellido", type="text", name="apellido", placeholder="Apellido", value="#{usuario.apellido}")
+          div
+            label(for="email") Correo electrónico
+            input(id="email", type="email", name="email", placeholder="Correo electrónico", value="#{usuario.email}")              
+          div
+            label(for="username") Nombre de Usuario
+            input(id="username", type="text", name="username", placeholder="Nombre de Usuario", value="#{usuario.username}")
+          div
+            label(for="access") Acceso
+            select(id="access", name="access")     
+              option(value="Administrador" ) Administrador
+              option(value="Editor") Editor
+        div
+          div(class="botones-inferiores right-align")
+            input(type="submit", value="Guardar", class="btn-relleno")

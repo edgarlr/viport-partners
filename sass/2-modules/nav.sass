@@ -1,0 +1,41 @@
+@import "../1-Base/vars"
+
+.main-nav
+  width: 15rem
+  height: 100%
+  display: -webkit-flex
+  display: flex
+  position: fixed
+  background-color: $azul-nav
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,.5)
+
+  .main-header
+    height: 60px
+    background-color: white
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.3)
+
+  ul
+    list-style-type: none
+    margin: 0
+    padding: 0
+
+  .top-nav
+    height: 70%
+
+  .bottom-nav
+    align-self: flex-end
+    margin-bottom: 3em
+
+  li a
+    font-weight: 300
+    display: block
+    color: white
+    text-decoration: none
+    opacity: 0.5
+    padding-top: 2em
+    &:hover:not(.active)
+      color: white
+      opacity: 1.0
+    &.active
+      color: white
+      opacity: 1.0

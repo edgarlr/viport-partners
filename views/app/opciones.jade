@@ -1,0 +1,36 @@
+extends ../layout.jade
+block contenido
+  div(class="contenido")
+    div(class="opciones")
+      nav(class="opciones-nav")
+        h4 Cuenta
+        ul
+          li(id="cambiar-nombre" onclick="displayName()" class="active") Cambiar nombre
+          li(id="cambiar-contraseña" onclick="displayPassword()") Cambiar Contraseña
+      div(class="opciones-form" id="cambiar-name")
+        form(method="POST", action="/home/opciones?_method=PUT")
+          div(class="form-opc")
+            div(class="formGroup")
+              label(for="name") Nombre
+              input(id="name", type="text", name="name", placeholder="Nombre" value="#{usuario.nombre}")
+            div(class="formGroup")
+              label(for="apellido") Apellido
+              input(id="apellido", type="text", name="apellido", placeholder="Apellido", value="#{usuario.apellido}")
+          div(class="botones-inferiores right-align")
+            input(type="submit", value="Cancelar" class="btn-borde")
+            input(type="submit", value="Guardar" class="btn-relleno")
+              
+      div(class="opciones-form" id="cambiar-password" style="display: none")
+        form(method="POST", action="/home/opciones?_method=PUT")
+          div(class="form-opc")
+            div(class="formGroup")
+              label(for="passworde") Nueva Contraseña
+              input(id="password", type="password", name="password", placeholder="Nueva Contraseña")
+            div(class="formGroup")
+              label(for="password") Confirmar Contraseña
+              input(id="password", type="password", name="password", placeholder="Confirmar Contraseña")
+          div(class="botones-inferiores right-align")
+            input(type="submit", value="Cancelar" class="btn-borde")
+            input(type="submit", value="Guardar" class="btn-relleno")
+              
+  script(src="/public/js/opciones.js")
