@@ -1,14 +1,64 @@
 const express = require('express');
 const User = require('./models/user').User;
+const Destino = require('./models/destino');
 const routerAdmin = express.Router();
 const user_finder_middleware = require('./middlewares/find_user');
 
 routerAdmin.get("/", function (req, res) {
   res.render("admin/home", {pageName: "Consola de Administrador"})
-})
+});
 
-/*REST*/
 
+/*Tableros*/
+routerAdmin.get("/tablero/nuevo", function (req, res) {
+  res.render("admin/tableros/nuevo", {pageName: "Nuevo Destino"})
+});
+
+routerAdmin.get("/tablero/:destino/editar", function (req, res) {
+
+});
+
+routerAdmin.route("/tablero/:destino")
+  .get(function(req, res){
+    Destino.findOne({clave: req.params.destino}, function (err, destino) {
+      res.render("admin/tableros/destino", {pageName: destino.nombre, destino: destino});
+    })
+  })
+  .put(function (req, res) {
+
+  })
+  .delete(function (req, res) {
+
+  });
+
+routerAdmin.route("/tablero")
+  .get(function(req, res){
+    Destino.find({}, function (err, destinos) {
+      if (err) { res.redirect("/admin"); return; }
+      res.render("admin/tableros/index", {destinos: destinos, pageName: "Tableros"});
+    })
+  })
+  .post(function (req, res) {
+    var data = {
+      nombre: req.fields.name,
+      descripcion: req.fields.description,
+      clave: req.fields.clave.toLowerCase()
+    }
+
+    var destino = new Destino(data);
+
+    destino.save(function (err) {
+      if (!err) {
+        res.redirect("tablero/"+destino.clave);
+      }else {
+        res.render(err)
+      }
+    })
+
+  });
+
+
+/*Usuarios*/
 routerAdmin.get("/usuarios/nuevo", function (req, res) {
   res.render("admin/usuarios/nuevo", {pageName: "Nuevo Usuario"})
 });

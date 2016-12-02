@@ -44,6 +44,22 @@
     box-sizing: border-box
     font-weight: 300
     color: $gris-neutro
+  .file-upload
+    label, input
+      display: block
+    input[type=file]::-webkit-file-upload-button
+      color: white
+      background-color: $rosa
+      border: 0
+      margin: .4em 0
+      padding: .6em 1em
+      cursor: pointer
+  textarea
+    @extend input[type=text]
+    height: 5em
+    resize: none
+    padding: 5px 10px
+    font-family: Roboto
   select
     @extend input[type=text]
     padding: 0 .6em

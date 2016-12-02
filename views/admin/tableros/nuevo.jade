@@ -1,0 +1,21 @@
+extends ../layoutAdmin.jade
+block contenido
+  div(class="contenido")
+    div(class="new-user")
+      form(method="POST", action="/admin/tablero")
+        div(class="form-user")
+          div
+            label(for="name") Nombre
+            input(id="name", type="text", name="name", placeholder="Nombre")
+          div
+            label(for="clave") Clave
+            input(id="clave", type="text", name="clave", placeholder="Clave")
+          div
+            label(for="description") Descripción
+            textarea(id="description", name="description", placeholder="Descripción")
+          div(class="file-upload")
+            label(for="foto") Foto
+            input(id="foto", type="file", name="foto")              
+        div
+          div(class="botones-inferiores right-align")
+            input(type="submit", value="Crear", class="btn-relleno")

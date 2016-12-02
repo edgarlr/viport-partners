@@ -1,0 +1,7 @@
+extends ../layoutAdmin.jade
+block contenido
+  div(class="contenido")
+    for destino in destinos
+      div(class="destino-card")
+        div(class="header")
+          h4= destino.nombre
