@@ -30,9 +30,7 @@ app.use(cookieSession({
 
 app.set("view engine", "jade");
 
-
 app.get("/", function (req, res) {
-  console.log(req.session);
   res.render("index")
 });
 
@@ -45,7 +43,7 @@ app.post("/sessions", function (req, res) {
   })
 });
 
-app.use("/admin", admin_session);
+app.use("/admin", admin_session, session_middleware);
 app.use("/admin", routerAdmin);
 app.use("/home", session_middleware)
 app.use("/home", routerApp);

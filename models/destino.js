@@ -14,6 +14,10 @@ var destino_schema = new Schema({
     type:String,
     required:true,
     unique:true
+  },
+  creator:{
+    type: Schema.Types.ObjectId,
+    ref: "User"
   }
 });
 

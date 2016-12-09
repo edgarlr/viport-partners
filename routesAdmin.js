@@ -3,32 +3,59 @@ const User = require('./models/user').User;
 const Destino = require('./models/destino');
 const routerAdmin = express.Router();
 const user_finder_middleware = require('./middlewares/find_user');
+const destino_finder_middelware = require('./middlewares/find_destino');
 
+/*Index*/
 routerAdmin.get("/", function (req, res) {
   res.render("admin/home", {pageName: "Consola de Administrador"})
 });
-
 
 /*Tableros*/
 routerAdmin.get("/tablero/nuevo", function (req, res) {
   res.render("admin/tableros/nuevo", {pageName: "Nuevo Destino"})
 });
 
-routerAdmin.get("/tablero/:destino/editar", function (req, res) {
+routerAdmin.all("/tablero/:destino*", destino_finder_middelware)
 
+routerAdmin.get("/tablero/:destino/editar", function (req, res) {
+  res.render("admin/tableros/editar", {pageName: "Editar destino"});
 });
 
 routerAdmin.route("/tablero/:destino")
   .get(function(req, res){
-    Destino.findOne({clave: req.params.destino}, function (err, destino) {
-      res.render("admin/tableros/destino", {pageName: destino.nombre, destino: destino});
-    })
+    res.render("admin/tableros/destino", {pageName: res.locals.destino.nombre});
   })
   .put(function (req, res) {
-
+    Destino.findOneAndUpdate(
+      {
+        nombre: res.locals.destino.nombre,
+        descripcion: res.locals.destino.descripcion,
+        clave: res.locals.destino.clave
+      },
+      {
+        nombre: req.fields.name,
+        descripcion: req.fields.description,
+        clave: req.fields.clave.toLowerCase()
+      },
+      { runValidators: true, context: "query"},
+      function (err) {
+        if (err) {
+          console.log(err);
+          res.render("/admin/tablero/"+req.params.destino+"/editar")
+        }
+        res.redirect("/admin/tablero");
+      }
+    )
   })
   .delete(function (req, res) {
-
+    Destino.findOneAndRemove({_id: res.locals.destino._id}, function(err) {
+      if (!err) {
+        res.redirect("/admin/tablero")
+      }else {
+        console.log(err);
+        res.redirect("/admin/tablero/"+req.params.destino+"/editar")
+      }
+    });
   });
 
 routerAdmin.route("/tablero")
@@ -42,7 +69,8 @@ routerAdmin.route("/tablero")
     var data = {
       nombre: req.fields.name,
       descripcion: req.fields.description,
-      clave: req.fields.clave.toLowerCase()
+      clave: req.fields.clave.toLowerCase(),
+      creator: res.locals.user._id
     }
 
     var destino = new Destino(data);
@@ -50,12 +78,15 @@ routerAdmin.route("/tablero")
     destino.save(function (err) {
       if (!err) {
         res.redirect("tablero/"+destino.clave);
+        console.log(destino);
       }else {
         res.render(err)
       }
     })
 
   });
+
+/*Lugares, Monumentos, Rutas, Experiencias, Etc.*/
 
 
 /*Usuarios*/
@@ -127,7 +158,7 @@ routerAdmin.route("/usuarios")
     var user = new User(data);
 
     user.save().then(function (us) {
-      res.send("Guardamos el usuario exitosamente");
+      res.redirect("usuarios")
     }, function (err) {
       if (err) {
         console.log(String(err));

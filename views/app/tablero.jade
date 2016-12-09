@@ -1,2 +1,12 @@
-extends ../layout.jade
+extends layout.jade
 block contenido
+  div(class="contenido")
+    div(class="destinos-row")
+      div(class="destinos-row-header")
+        h2 Destinos 
+      each destino in destinos
+        a(href="/home/tablero/#{destino.clave}", class="card-link")
+          div(class="destino-card")
+            div(class="card-header")
+              h4= destino.nombre
+            div(class="card-container")

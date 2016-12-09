@@ -1,7 +1,18 @@
 extends ../layoutAdmin.jade
 block contenido
   div(class="contenido")
-    for destino in destinos
-      div(class="destino-card")
-        div(class="header")
-          h4= destino.nombre
+    div(class="destinos-row")
+      div(class="destinos-row-header")
+        h2 Destinos
+        a(href="/admin/tablero/nuevo")
+          i(class="icon-gray icon-mas")  
+      each destino in destinos
+        a(href="/admin/tablero/#{destino.clave}", class="card-link")
+          div(class="destino-card")
+            div(class="card-header")
+              h4= destino.nombre
+              form(action="/admin/tablero/#{destino.clave}?_method=DELETE" class="form-btn", method="POST")
+                button(type="submit" class="icon-btn")
+                  i(class="icon-white icon-salir")
+            div(class="card-container")
+            

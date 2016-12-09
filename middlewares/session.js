@@ -2,7 +2,6 @@ const User = require('../models/user').User;
 
 module.exports = function (req, res, next) {
   if(!req.session.user_id){
-    console.log(req.session);
     res.redirect("/");
   }
   else {
