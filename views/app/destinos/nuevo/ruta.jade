@@ -1,0 +1,21 @@
+extends ../../layout.jade
+block contenido
+  div(class="contenido")
+    div(class="form-new")
+      form(method="POST", action="/admin/tablero")
+        div(class="form")
+          div(class="form-row")
+            div(class="row-3-group")
+              label(for="name") Nombre
+              input(id="name", type="text", name="name", placeholder="Nombre", class="form-input")
+            div(class="row-1-group")
+              label(for="route-number") Número de ruta
+              input(id="route-number", type="text", name="route-number", placeholder="Número de ruta", class="form-input")
+          div
+            label(for="description") Descripción
+            textarea(id="description", name="description", placeholder="Descripción", class="form-textarea")
+                  
+              
+        div
+          div(class="botones-inferiores right-align")
+            input(type="submit", value="Crear", class="btn-relleno form-submit")

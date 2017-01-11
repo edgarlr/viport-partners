@@ -1,0 +1,35 @@
+.dropdown-mini
+  background-color: transparent
+  border: none
+  margin: 0
+  font-size: .9em
+  font-weight: 300
+  position: relative
+  display: inline-block
+  &:focus
+    outline: 0
+  .dropdown-mini-content
+    display: none
+    position: absolute
+    background-color: white
+    width: 11.5em
+    height: auto
+    overflow: auto
+    padding: 1.25em
+    right: 0
+    text-align: left
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.2)
+    border-radius: 5px
+    margin: .75em 0 1em 0
+    a
+      color: $gris-neutro
+      display: block
+      padding: .2em 0em
+      text-decoration: none
+      transition: 0.1s
+      &:hover
+        color: $gris-titulos
+        font-size: 1.06em
+
+  .show
+    display: block

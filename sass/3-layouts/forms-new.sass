@@ -1,0 +1,79 @@
+.form-new
+  width: 50em
+  margin: auto
+  margin-top: 5em
+  display: flex
+  .form
+    height: auto
+    width: 50em
+    margin: 0
+    background-color: white
+    padding: 2em 5em 2em 2em
+    box-sizing: border-box
+    color: $gris-neutro
+    font-weight: 300
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1)
+    border-radius: 5px
+    .form-input
+      width: 100%
+      height: 2.5em
+      padding: 12px 10px
+      margin: .5em 0 1.1em 0
+      border: 1px solid #ccc
+      box-sizing: border-box
+      font-weight: 300
+      color: $gris-neutro
+    .form-input-time
+      width: 100%
+      height: 2.5em
+      padding: 5px 2px
+      margin: .5em 0 0 0
+      border: 1px solid #ccc
+      box-sizing: border-box
+      font-weight: 300
+      color: $gris-neutro
+    .form-select
+      @extend .form-input
+      padding: 0 .6em
+    .form-textarea
+      @extend .form-input
+      height: 8em
+      resize: none
+      padding: 5px 10px
+      font-family: Roboto
+  .form-btn-icon
+    background-color: transparent
+    border: none
+    padding: 0
+    margin: 0
+    width: auto
+    height: auto
+    &:focus
+      outline: 0
+  .form-submit
+    width: 10em
+    height: 2.5em
+    border: 1px solid $verde
+    font-size: .85em
+    margin: 1.5em 0 1.5em 1.25em
+    text-decoration: none
+    cursor: pointer
+
+  .btn-relleno
+    background-color: $verde
+    color: white
+
+.form-row
+  display: flex
+  .row-3-group
+    width: 60%
+    margin: 0 2.5em 0 0
+  .row-1-group
+    width: 40%
+    margin: 0
+  .row-2-group
+    width: 50%
+    margin: 0 2.5em 0 0
+  .row-7-group
+    width: 14%
+    margin: 0 1em 0 0

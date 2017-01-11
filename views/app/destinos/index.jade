@@ -2,17 +2,24 @@ extends ../layout.jade
 block contenido
   div(class="contenido")
     div(class="right-align" style="padding: .5em;")
-      a(href="/admin/usuarios/nuevo")
-        i(class="icon-gray icon-filtrar icon-tableHeader", style="font-size: .8em;")
-      a(href="/admin/usuarios/nuevo")
-          i(class="icon-gray icon-mas icon-tableHeader")
+      a(href="#")
+        i(class="icon-gray icon-filtrar icon-tableHeader", style="font-size: .8em; margin-right:3em;")
+      button(class="dropdown-mini" onclick="showDropdownNew()" style="margin-right:3em;")
+        i(class="icon-gray icon-mas icon-tableHeader dropdown-mini")
+        div(id="newplace-dropdown" class="dropdown-mini-content")
+          a(href="nuevo-lugar") Lugar
+          a(href="nuevo-MPF") Monumento, parque, etc.
+          a(href="nuevo-ruta") Ruta
+          a(href="nuevo-consejo") Consejo
+          a(href="nuevo-experiencia") Experiecia
+          a(href="nuevo-sabiasque") Sabias qué          
     table(class="tablas")
       thead
         tr
           th Nombre
           th Tipo
           th Estado
-          th Ultima Ediciòn
+          th Ultima Edición
           th Enlace
           th Acciones
       tbody
