@@ -9,20 +9,20 @@
     font-weight: 300
     h4
       font-weight: 400
-      color: $gris-titulos
+      color: $titulos-color
       margin: 0
       padding: 0 0 0 .8em
     ul
       margin-top: .75em
       padding: 0
-      color: $gris-neutro
+      color: $texto-color
       list-style-type: none
       li
         margin-bottom: .5em
         cursor: pointer
         padding: 0 0 0 .8em
       .active
-        border-left: 4px solid $verde
+        border-left: 4px solid $color-acento-secundario
 
   .form-opc
     height: auto
@@ -31,7 +31,7 @@
     background-color: white
     padding: 2em 5em 2em 2em
     box-sizing: border-box
-    color: $gris-neutro
+    color: $texto-color
     font-weight: 300
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1)
     .formGroup
@@ -43,13 +43,13 @@
     border: 1px solid #ccc
     box-sizing: border-box
     font-weight: 300
-    color: $gris-neutro
+    color: $texto-color
   .file-upload
     label, input
       display: block
     input[type=file]::-webkit-file-upload-button
       color: white
-      background-color: $rosa
+      background-color: $color-acento
       border: 0
       margin: .4em 0
       padding: .6em 1em
@@ -66,17 +66,17 @@
   input[type=submit]
     width: 10em
     height: 2.5em
-    border: 1px solid $verde
+    border: 1px solid $color-acento-secundario
     font-size: .85em
     margin: 1.5em 0 1.5em 1.25em
     text-decoration: none
     cursor: pointer
   .btn-relleno
-    background-color: $verde
+    background-color: $color-acento-secundario
     color: white
   .btn-borde
     background-color: inherit
-    color: $gris-neutro
+    color: $texto-color
 
 .new-user
   @extend .opciones

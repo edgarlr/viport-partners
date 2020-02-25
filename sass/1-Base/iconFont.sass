@@ -1,5 +1,9 @@
 @import "vars"
 
+.icon-property
+  cursor: pointer
+  font-size: 1.8em
+
 .icon-white
   color: white
   padding: 1em
@@ -7,19 +11,17 @@
   cursor: pointer
 
 .icon-pink
-  color: $rosa
-  font-size: 1.8em
-  cursor: pointer
+  @extend .icon-property
+  color: $color-acento
 
 .icon-gray
-  color: $gris-neutro
-  font-size: 1.8em
-  cursor: pointer
+  @extend .icon-property
+  color: $texto-color
 
 .icon-darkgray
-  @extend .icon-gray
-  color: $gris-titulos
+  @extend .icon-property
+  color: $titulos-color
 
 .icon-green
-  @extend .icon-gray
-  color: $verde
+  @extend .icon-property
+  color: $color-acento-secundario

@@ -1,0 +1,21 @@
+extends ../../layout.jade
+block contenido
+  div(class="contenido")
+    div(class="form-new")
+      form(method="POST", action="/home/atractivos/sabiasque/#{sabiasque._id}?_method=PUT")
+        div(class="form")
+          div(class="form-row")
+            div(class="row-3-group")
+              label(for="title") Título
+              input(id="title", type="text", name="title", placeholder="Título", class="form-input" value="#{sabiasque.title}")
+            div(class="row-1-group")
+              label(for="destino") Destino
+              select(id="destino", name="destino", class="form-select")
+                each destino in destinos
+                  option(value="#{destino._id}") #{destino.nombre}
+          div
+            label(for="description") Descripción
+            textarea(id="description", name="description", placeholder="Descripción", class="form-textarea") #{sabiasque.description}
+        div
+          div(class="botones-inferiores right-align")
+            input(type="submit", value="Guardar", class="btn-relleno form-submit")

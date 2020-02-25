@@ -7,19 +7,34 @@ block contenido
       button(class="dropdown-mini" onclick="showDropdownNew()" style="margin-right:3em;")
         i(class="icon-gray icon-mas icon-tableHeader dropdown-mini")
         div(id="newplace-dropdown" class="dropdown-mini-content")
-          a(href="nuevo-lugar") Lugar
-          a(href="nuevo-MPF") Monumento, parque, etc.
-          a(href="nuevo-ruta") Ruta
-          a(href="nuevo-consejo") Consejo
-          a(href="nuevo-experiencia") Experiecia
-          a(href="nuevo-sabiasque") Sabias qué          
+          a(href="/home/atractivos/nuevo-lugar") Lugar
+          a(href="/home/atractivos/nuevo-MPF") Monumento, parque, etc.
+          a(href="/home/atractivos/nuevo-experiencia") Experiencia
+          a(href="/home/atractivos/nuevo-ruta") Ruta
+          a(href="/home/atractivos/nuevo-sabiasque") Sabias qué          
+          a(href="/home/atractivos/nuevo-consejo") Consejo
     table(class="tablas")
       thead
         tr
           th Nombre
           th Tipo
-          th Estado
           th Ultima Edición
-          th Enlace
+          th Estado
           th Acciones
       tbody
+        each value in results
+          each item in value
+            tr
+              td
+                a(href="/home/atractivos/#{item.library}/#{item.id}")
+                  = item.title
+              td= item.type
+  
+              td Por #{item.creator.nombre+" "+item.creator.apellido}
+              td Publicado
+              td
+                a(href="/home/atractivos/#{item.library}/#{item._id}/editar")
+                  i(class="icon-darkgray icon-opciones icon-table")
+                form(action="/home/atractivos/#{item.library}/#{item._id}?_method=DELETE" class="form-btn", method="POST")
+                  button(type="submit" class="icon-btn")
+                    i(class="icon-darkgray icon-salir")

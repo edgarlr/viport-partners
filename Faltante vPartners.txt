@@ -1,0 +1,9 @@
+implementar REST para consejos en Lugar, Experiencia, MPF, ruta.
+implementar REST para sabiasque en Lugar, Experiencia, MPF, ruta.
+implementar REST para experiencia en Lugar, MPF, ruta.
+Rest de fotos para Lugar, MPF, Experiencia, 
+Implementar mapas y ubicaciones a los modelos
+Modelo de rutas.
+Filtrar en Tableros
+
+

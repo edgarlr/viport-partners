@@ -9,6 +9,7 @@
   "author": "Edgar López",
   "license": "ISC",
   "dependencies": {
+    "async": "^2.1.4",
     "cookie-session": "^2.0.0-alpha.2",
     "express": "^4.14.0",
     "express-formidable": "^1.0.0",

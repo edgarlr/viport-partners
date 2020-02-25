@@ -1,0 +1,17 @@
+extends ../../layout.jade
+block contenido
+  div(class="contenido fila-row")
+    div(class="card-lugar")
+      div(class="main-header")
+        h2= mpf.title
+        h3= mpf.destino.nombre
+      div(class="content")
+        p= mpf.description
+      div(class="info-section card-row")
+        div(class="card-1-colm icon-row")
+          i(class="icon-gray icon-mapa")
+        div(class="card-11-colm")
+          p= mpf.adress
+    div(class="card-atractivo-destino")
+      a(href="/home/tablero/#{mpf.destino.clave}") 
+        p= mpf.destino.nombre

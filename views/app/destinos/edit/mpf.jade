@@ -1,0 +1,28 @@
+extends ../../layout.jade
+block contenido
+  div(class="contenido")
+    div(class="form-new")
+      form(method="POST", action="/home/atractivos/mpf/#{mpf._id}?_method=PUT")
+        div(class="form")
+          div(class="form-row")
+            div(class="row-3-group")
+              label(for="title") Título
+              input(id="title", type="text", name="title", placeholder="Ej. Monumento a la Madre", class="form-input" required value="#{mpf.title}")
+            div(class="row-1-group")
+              label(for="destino") Destino
+              select(id="destino", name="destino", class="form-select" value="#{mpf.destino}")
+                each destino in destinos
+                  option(value="#{destino._id}") #{destino.nombre}
+          div
+            label(for="type") Tipo
+            input(id="type", type="text", name="type", placeholder="Monumento, Parque, Fuente, Etc." class="form-input" value="#{mpf.type}")
+          div
+            label(for="description") Descripción
+            textarea(id="description", name="description", placeholder="Descripción", class="form-textarea") #{mpf.description}
+          div
+            label(for="adress") Dirección
+            input(id="adress", type="text", name="adress", placeholder="Calle, n°, colonia, delegación.", class="form-input" value="#{mpf.adress}")
+          input(type="hidden", value="#{mpf.destino.clave}", name="destino_hidden")
+        div
+          div(class="botones-inferiores right-align")
+            input(type="submit", value="Guardar", class="btn-relleno form-submit")

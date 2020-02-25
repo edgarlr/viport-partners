@@ -1,0 +1,106 @@
+extends ../../layout.jade
+block contenido
+  div(class="contenido")
+    div(class="form-new")
+      form(method="POST", action="/home/atractivos/experiencias/#{experiencia._id}?_method=PUT")
+        div(class="form")
+          div(class="form-row")
+            div(class="row-3-group")
+              label(for="title") Título
+              input(id="title", type="text", name="title", placeholder="Título", class="form-input" value="#{experiencia.title}")
+            div(class="row-1-group")
+              label(for="destino") Destino
+              select(id="destino", name="destino", class="form-select")
+                each destino in destinos
+                  option(value="#{destino._id}") #{destino.nombre}
+          div
+            label(for="description") Descripción
+            textarea(id="description", name="description", placeholder="Descripción", class="form-textarea") #{experiencia.description}
+          div
+            label(for="adress") Dirección
+            input(id="adress", type="text", name="adress", placeholder="Calle, n°, colonia, delegación.", class="form-input" value="#{experiencia.adress}")
+          div(class="form-section-header")
+            p Horario
+          div(class="form-row")
+            div(class="row-7-group")
+              label(for="lunes_apertura") Lunes
+              input(id="lunes_apertura", type="time", name="lunes_apertura", class="form-input-time" value="#{experiencia.horario.lunes.apertura}")
+              label(for="lunes_cierre")
+              input(id="lunes_cierre", type="time", name="lunes_cierre", class="form-input-time" value="#{experiencia.horario.lunes.cierre}")
+              label(for="lunes_precio")
+              input(id="lunes_precio", type="number", name="lunes_precio" class="form-input-num", placeholder="$" value="#{experiencia.horario.lunes.precio}")
+            div(class="row-7-group")
+              label(for="martes_apertura") Martes
+              input(id="martes_apertura", type="time", name="martes_apertura", class="form-input-time" value="#{experiencia.horario.martes.apertura}")
+              label(for="martes_cierre")
+              input(id="martes_cierre", type="time", name="martes_cierre", class="form-input-time" value="#{experiencia.horario.martes.cierre}")
+              label(for="martes_precio")
+              input(id="martes_precio", type="number", name="martes_precio" class="form-input-num", placeholder="$" value="#{experiencia.horario.martes.precio}")
+            div(class="row-7-group")
+              label(for="miercoles_apertura") Miercoles
+              input(id="miercoles_apertura", type="time", name="miercoles_apertura", class="form-input-time" value="#{experiencia.horario.miercoles.apertura}")
+              label(for="miercoles_cierre")
+              input(id="miercoles_cierre", type="time", name="miercoles_cierre", class="form-input-time" value="#{experiencia.horario.miercoles.cierre}")
+              label(for="miercoles_precio")
+              input(id="miercoles_precio", type="number", name="miercoles_precio" class="form-input-num", placeholder="$" value="#{experiencia.horario.miercoles.precio}")
+            div(class="row-7-group")
+              label(for="jueves_apertura") Jueves
+              input(id="jueves_apertura", type="time", name="jueves_apertura", class="form-input-time" value="#{experiencia.horario.jueves.apertura}")
+              label(for="jueves_cierre")
+              input(id="jueves_cierre", type="time", name="jueves_cierre", class="form-input-time" value="#{experiencia.horario.jueves.cierre}")
+              label(for="jueves_precio")
+              input(id="jueves_precio", type="number", name="jueves_precio" class="form-input-num", placeholder="$" value="#{experiencia.horario.jueves.precio}")
+            div(class="row-7-group")
+              label(for="viernes_apertura") Viernes
+              input(id="viernes_apertura", type="time", name="viernes_apertura", class="form-input-time" value="#{experiencia.horario.viernes.apertura}")
+              label(for="viernes_cierre")
+              input(id="viernes_cierre", type="time", name="viernes_cierre", class="form-input-time" value="#{experiencia.horario.viernes.cierre}")
+              label(for="viernes_precio")
+              input(id="viernes_precio", type="number", name="viernes_precio" class="form-input-num", placeholder="$" value="#{experiencia.horario.viernes.precio}")
+            div(class="row-7-group")
+              label(for="sabado_apertura") Sábado
+              input(id="sabado_apertura", type="time", name="sabado_apertura", class="form-input-time" value="#{experiencia.horario.sabado.apertura}")
+              label(for="sabado_cierre")
+              input(id="sabado_cierre", type="time", name="sabado_cierre", class="form-input-time" value="#{experiencia.horario.sabado.cierre}")
+              label(for="sabado_precio")
+              input(id="sabado_precio", type="number", name="sabado_precio" class="form-input-num", placeholder="$" value="#{experiencia.horario.sabado.precio}")
+            div(class="row-7-group")
+              label(for="domingo_apertura") Domingo
+              input(id="domingo_apertura", type="time", name="domingo_apertura", class="form-input-time" value="#{experiencia.horario.domingo.apertura}")
+              label(for="domingo_cierre")
+              input(id="domingo_cierre", type="time", name="domingo_cierre", class="form-input-time" value="#{experiencia.horario.domingo.cierre}")
+              label(for="domingo_precio")
+              input(id="domingo_precio", type="number", name="domingo_precio" class="form-input-num", placeholder="$" value="#{experiencia.horario.domingo.precio}")
+          div(class="form-section-header")
+            p Precio Especial
+          div(class="form-row")
+            div(class="row-5-group")
+              label(for="menores_precio") > 13 años
+              input(id="menores_precio", type="number", name="menores_precio" class="form-input-num", placeholder="$" value="#{experiencia.precio.menores}")
+            div(class="row-5-group")
+              label(for="inapam_precio") INAPAM
+              input(id="inapam_precio", type="number", name="inapam_precio" class="form-input-num", placeholder="$" value="#{experiencia.precio.inapam}")
+            div(class="row-5-group")
+              label(for="discapacitados_precio") Discapacitados
+              input(id="discapacitados_precio", type="number", name="discapacitados_precio" class="form-input-num", placeholder="$" value="#{experiencia.precio.discapacitados}")
+            div(class="row-5-group")
+              label(for="pensionados_precio") Pensionados
+              input(id="pensionados_precio", type="number", name="pensionados_precio" class="form-input-num", placeholder="$" value="#{experiencia.precio.pensionados}")
+            div(class="row-5-group")
+              label(for="estudiantes_precio") Estudiantes
+              input(id="estudiantes_precio", type="number", name="estudiantes_precio" class="form-input-num", placeholder="$" value="#{experiencia.precio.estudiantes}")
+          div(class="form-section-header")
+            p Consejos
+          div
+            for item, i in consejos
+              div(class="consejos_container")
+                h3 Consejo
+                button(class="delete-input-btn" type="button" onclick="deleteConsejo(#{i})")
+                  i(class="icon-gray icon-salir")
+                div(id="consejo_#{i}")
+                  label(for="title_consejo_#{i}") Consejo
+                  textarea(id="title_consejo_#{i}" name="title_consejo_#{i}", class="form-textarea", required,  placeholder="Ej. No lleves mochila pues el lugar no cuenta con paquetería y no permiten entrar con bultos.") #{item.title}
+
+        div
+          div(class="botones-inferiores right-align")
+            input(type="submit", value="Guardar", class="btn-relleno form-submit")

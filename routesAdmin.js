@@ -66,7 +66,7 @@ routerAdmin.route("/tablero")
     })
   })
   .post(function (req, res) {
-    var data = {
+    let data = {
       nombre: req.fields.name,
       descripcion: req.fields.description,
       clave: req.fields.clave.toLowerCase(),
@@ -78,12 +78,10 @@ routerAdmin.route("/tablero")
     destino.save(function (err) {
       if (!err) {
         res.redirect("tablero/"+destino.clave);
-        console.log(destino);
       }else {
         res.render(err)
       }
     })
-
   });
 
 /*Lugares, Monumentos, Rutas, Experiencias, Etc.*/
@@ -140,6 +138,7 @@ routerAdmin.route("/usuarios/:id")
 routerAdmin.route("/usuarios")
   .get(function (req, res) {
     User.find({},function (err, usuarios) {
+      console.log(usuarios);
       if(err){ res.redirect("/admin"); return; }
       res.render("admin/usuarios/index", {usuarios: usuarios, pageName: "Usuarios"})
     });

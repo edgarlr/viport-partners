@@ -1,0 +1,220 @@
+.card-row
+  display: flex
+  .card-1-colm
+    width: 10%
+  .card-15-colm
+    width: 12%
+    text-align: center
+  .card-2-colm
+    width: 20%
+  .card-3-colm
+    width: 25%
+  .card-6-colm
+    width: 50%
+  .card-5-colm
+    width: 41.6%
+  .card-10-colm
+    width: 83%
+  .card-11-colm
+    width: 90%
+
+.circulo-info
+  width: 23px
+  height: 23px
+  border-radius: 15px
+.circulo-relleno
+  @extend .circulo-info
+  background-color: $texto-color
+.circulo-vacio
+  @extend .circulo-info
+  border: solid 1px $texto-color
+
+.card-atractivo-destino
+  position: relative
+  color: $titulos-color
+  font-weight: 400
+  text-align: right
+  margin: 15em 2em 0 0
+  a
+    &:focus, &:active, &:visited, &:link
+      text-decoration: none
+      color: $titulos-color
+
+.card-consejo
+  width: auto
+  height: auto
+  max-width: 50%
+  margin: 9em auto 0
+  padding: 1em
+  background-color: white
+  box-shadow: 3px 3px 10px 0 rgba(0,0,0,0.18)
+  .main-header
+    text-align: center
+    i
+      font-size: 3em
+    h1
+      margin: 0
+      font-weight: 400
+      color: $titulos-color
+  .actions
+    text-align: center
+    margin: 1em 0
+    i
+      font-size: 2em
+  .content
+    text-align: center
+    p
+      margin: 1em 0 1.5em 0
+      color: $texto-color
+      font-weight: 300
+      font-size: 1.15em
+  .desplegar-btn
+    background: transparent
+    border: none
+    font-size: .35em
+    transition: .12s
+    &:focus
+      outline: 0
+    i
+      margin-left: -.9em
+
+
+.card-desplegada
+  position: relative
+  z-index: -1
+  width: auto
+  height: auto
+  max-width: 50%
+  margin: 0 auto
+  padding: 1em
+  background-color: $color-acento-secundario
+  box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.1)
+  p
+    padding: 0 1em 2em 1em
+    font-weight: 300
+    color: white
+
+.card-lugar
+  @extend .card-consejo
+  margin: 6em auto 0
+  .main-header
+    margin: 2em 0 2em 0
+    text-align: center
+    h2
+      color: $texto-color
+      font-weight: 300
+      margin: 0
+      font-size: 1.5em
+    h3
+      @extend h2
+      margin: .15em 0 0
+      font-size: 1.15em
+  .content
+    p
+      margin: 2em 1em 2em 
+      text-align: left
+  .info-section
+    margin: 1em 1em
+    .icon-row
+      text-align: center
+      i
+        font-size: 1.5em
+    p
+      font-size: 1em
+      font-weight: 300
+      margin: .4em 0
+      color: $texto-color
+  .filter-section
+    margin: 2em 0
+    h2
+      margin: .5em
+      font-size: 1.2em
+      font-weight: 300
+      color: $texto-color
+    .filter-div
+      display: flex
+      margin: 0 1em
+      h2
+        width: 90%
+      div
+        margin: .5em
+        display: inline-block
+  .horario
+    margin-top: 1em
+    width: 100%
+    p
+      color: $texto-color
+      font-weight: 300
+    .info-horario
+      text-align: left
+      margin: 0 -1em 0 1em
+      i
+        color: $color-acento-secundario
+      p
+        color: $titulos-color
+        font-weight: 400
+  .precio-especial
+    margin: 0 0 0 1em
+    .header-tabler
+      color: $texto-color
+    p
+      color: $texto-color
+      font-size: .8em
+  .section-header
+    font-size: .9em
+    font-weight: 600
+    color: $color-acento
+    margin: 1.5em 0 .5em .5em
+
+.card-experiencia
+  @extend .card-consejo
+  .main-header
+    h2
+      color: $texto-color
+      font-weight: 300
+      margin: 0 0 0 0
+      font-size: 1.5em
+    h3
+      @extend h2
+      margin: .15em 0 0 0
+      font-size: 1.15em
+  .content
+    p
+      margin: 2em 1em 1em
+      text-align: left
+  .info
+    .icon-row
+      text-align: center
+      margin-top: .5em
+      i
+        font-size: 1.5em
+    p
+      font-size: 1em
+      font-weight: 300
+      color: $texto-color
+  .horario
+    margin-top: 1em
+    width: 100%
+    p
+      color: $texto-color
+      font-weight: 300
+    .info-horario
+      text-align: left
+      margin: 0 -1em 0 1em
+      i
+        color: $color-acento-secundario
+      p
+        color: $titulos-color
+        font-weight: 400
+  .precio-especial
+    margin: 0 0 0 1em
+    .header-tabler
+      color: $titulos-color
+    p
+      color: $texto-color
+      font-size: .8em
+  .section-header
+    font-size: .9em
+    font-weight: 600
+    color: $color-acento
+    margin: 1.5em 0 .5em .5em

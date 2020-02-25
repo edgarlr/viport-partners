@@ -2,20 +2,16 @@ extends ../../layout.jade
 block contenido
   div(class="contenido")
     div(class="form-new")
-      form(method="POST", action="/admin/tablero")
+      form(method="POST", action="/home/atractivos/consejos/#{consejo._id}?_method=PUT")
         div(class="form")
-          div(class="form-row")
-            div(class="row-3-group")
-              label(for="title") Título
-              input(id="title", type="text", name="title", placeholder="Título", class="form-input")
-            div(class="row-1-group")
-              label(for="destino") Destino
-              select(id="destino", name="destino", class="form-select")
-                each destino in destinos
-                  option(value="#{destino.nombre}") #{destino.nombre}
           div
-            label(for="description") Descripción
-            textarea(id="description", name="description", placeholder="Descripción", class="form-textarea")
+            label(for="destino") Destino
+            select(id="destino", name="destino", class="form-select")
+              each destino in destinos
+                option(value="#{destino._id}") #{destino.nombre}
+          div
+            label(for="title") Consejo
+            textarea(id="title", name="title", placeholder="Ej. En los restaurantes se acostumbra a dejar el 15% de propina.", class="form-textarea") #{consejo.title}            
         div
           div(class="botones-inferiores right-align")
-            input(type="submit", value="Crear", class="btn-relleno form-submit")
+            input(type="submit", value="Guardar", class="btn-relleno form-submit")

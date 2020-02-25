@@ -6,7 +6,7 @@ module.exports = function (req, res, next) {
       res.locals.destino = destino;
       next();
     }else {
-      res.redirect("tablero");
+      res.redirect("/tablero");
     }
   })
 }

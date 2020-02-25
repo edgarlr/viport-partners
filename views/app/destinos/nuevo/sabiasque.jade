@@ -2,7 +2,7 @@ extends ../../layout.jade
 block contenido
   div(class="contenido")
     div(class="form-new")
-      form(method="POST", action="/admin/tablero")
+      form(method="POST", action="/home/atractivos/sabiasque")
         div(class="form")
           div(class="form-row")
             div(class="row-3-group")
@@ -12,7 +12,7 @@ block contenido
               label(for="destino") Destino
               select(id="destino", name="destino", class="form-select")
                 each destino in destinos
-                  option(value="#{destino.nombre}") #{destino.nombre}
+                  option(value="#{destino._id}") #{destino.nombre}
           div
             label(for="description") Descripción
             textarea(id="description", name="description", placeholder="Descripción", class="form-textarea")

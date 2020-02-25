@@ -1,0 +1,90 @@
+extends ../../layout.jade
+block contenido
+  div(class="contenido fila-row")
+    div(class="card-experiencia")
+      div(class="card-row")
+        div(class="card-3-colm actions")
+          i(class="icon-gray icon-megusta")
+        div(class="card-6-colm main-header")
+          i(class="icon-pink icon-megusta-seleccion")
+          h1 Experiencia
+          h2= experiencia.title
+          h3= experiencia.destino.nombre
+        div(class="card-3-colm actions")
+          i(class="icon-gray icon-mas")
+      div(class="content")
+        p= experiencia.description
+      div(class="info card-row")
+        div(class="card-1-colm icon-row")
+          i(class="icon-gray icon-mapa")
+        div(class="card-10-colm")
+          p= experiencia.adress
+          
+      p(class="section-header") Horario
+      div(class="horario card-row")
+        div(class="card-15-colm info-horario")
+          i(class="icon-gray icon-reloj")
+          p Abre
+          p Cierra
+          p Precio
+        div(class="card-15-colm")
+          i(class="icon-gray icon-l")
+          p= experiencia.horario.lunes.apertura
+          p= experiencia.horario.lunes.cierre
+          p $#{experiencia.horario.lunes.precio}
+        div(class="card-15-colm")
+          i(class="icon-gray icon-m")
+          p= experiencia.horario.martes.apertura
+          p= experiencia.horario.martes.cierre
+          p $#{experiencia.horario.martes.precio}
+        div(class="card-15-colm")
+          i(class="icon-gray icon-x")
+          p= experiencia.horario.miercoles.apertura
+          p= experiencia.horario.miercoles.cierre
+          p $#{experiencia.horario.miercoles.precio}
+        div(class="card-15-colm")
+          i(class="icon-gray icon-j")
+          p= experiencia.horario.jueves.apertura
+          p= experiencia.horario.jueves.cierre
+          p $#{experiencia.horario.jueves.precio}
+        div(class="card-15-colm")
+          i(class="icon-gray icon-vier")
+          p= experiencia.horario.viernes.apertura
+          p= experiencia.horario.viernes.cierre
+          p $#{experiencia.horario.viernes.precio}
+        div(class="card-15-colm")
+          i(class="icon-gray icon-s")
+          p= experiencia.horario.sabado.apertura
+          p= experiencia.horario.sabado.cierre
+          p $#{experiencia.horario.sabado.precio}
+        div(class="card-15-colm")
+          i(class="icon-gray icon-d")
+          p= experiencia.horario.domingo.apertura
+          p= experiencia.horario.domingo.cierre
+          p $#{experiencia.horario.domingo.precio}
+      
+      p(class="section-header") Precio Especial
+      div(class="precio-especial card-row")
+        div(class="card-5-colm")
+          p(class="header-tabler") Menores
+          p $#{experiencia.precio.menores} 
+        div(class="card-5-colm")
+          p(class="header-tabler") INAPAM
+          p $#{experiencia.precio.inapam} 
+        div(class="card-5-colm")
+          p(class="header-tabler") Discapacitados
+          p $#{experiencia.precio.discapacitados} 
+        div(class="card-5-colm")
+          p(class="header-tabler") Pensionados y jubilados
+          p $#{experiencia.precio.pensionados} 
+        div(class="card-5-colm")
+          p(class="header-tabler") Maestros y estudiantes
+          p $#{experiencia.precio.estudiantes} 
+      p(class="section-header") Fotos
+      p(class="section-header") Consejos
+        each item in consejos
+          div(class="atractivo-consejos")
+            p= item.title
+    div(class="card-atractivo-destino")
+      a(href="/home/tablero/#{experiencia.destino.clave}") 
+        p= experiencia.destino.nombre

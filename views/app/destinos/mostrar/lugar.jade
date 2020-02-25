@@ -1,0 +1,152 @@
+extends ../../layout.jade
+block contenido
+  div(class="contenido fila-row")
+    div(class="card-lugar")
+      div(class="main-header")
+        h2= lugar.title
+        h3= lugar.destino.nombre
+      div(class="content")
+        p= lugar.description
+      div(class="info-section card-row")
+        div(class="card-1-colm icon-row")
+          i(class="icon-gray icon-mapa")
+        div(class="card-11-colm")
+          p= lugar.adress
+      div(class="info-section card-row")
+        div(class="card-1-colm icon-row")
+          i(class="icon-gray icon-telefono")
+        div(class="card-11-colm")
+          each value in lugar.tel
+            p= value
+      div(class="info-section card-row")
+        div(class="card-1-colm icon-row")
+          i(class="icon-gray icon-www")
+        div(class="card-11-colm")
+          each value in lugar.website
+            p= value
+      div(class="filter-section")
+        div(class="filter-div")
+          h2 Petfriendly
+          if lugar.info.petfriendly == true
+            div(class="circulo-relleno")
+          else
+            div(class="circulo-vacio")
+        div(class="filter-div")
+          h2 Tienda de souvenirs
+          if lugar.info.souvenirs == true
+            div(class="circulo-relleno")
+          else
+            div(class="circulo-vacio")
+        div(class="filter-div")
+          h2 Acceso a discapacitados
+          if lugar.info.discapacitados == true
+            div(class="circulo-relleno")
+          else
+            div(class="circulo-vacio")
+        div(class="filter-div")
+          h2 Paquetería
+          if lugar.info.paqueteria == true
+            div(class="circulo-relleno")
+          else
+            div(class="circulo-vacio")
+        div(class="filter-div")
+          h2 Área para fumar
+          if lugar.info.fumadores == true
+            div(class="circulo-relleno")
+          else
+            div(class="circulo-vacio")
+        div(class="filter-div")
+          h2 Parquimetro
+          if lugar.info.parquimetro == true
+            div(class="circulo-relleno")
+          else
+            div(class="circulo-vacio")
+        div(class="filter-div")
+          h2 Estacionamiento
+          if lugar.info.estacionamiento == true
+            div(class="circulo-relleno")
+          else
+            div(class="circulo-vacio")
+        div(class="filter-div")
+          h2 Touroguía
+          if lugar.info.touroguia == true
+            div(class="circulo-relleno")
+          else
+            div(class="circulo-vacio")
+        div(class="filter-div")
+          h2 Zona Wi-Fi
+          if lugar.info.wifi == true
+            div(class="circulo-relleno")
+          else
+            div(class="circulo-vacio")
+        div(class="filter-div")
+          h2 Baños
+          if lugar.info.banos == true
+            div(class="circulo-relleno")
+          else
+            div(class="circulo-vacio")
+      p(class="section-header") Horario
+      div(class="horario card-row")
+        div(class="card-15-colm info-horario")
+          i(class="icon-gray icon-reloj")
+          p Abre
+          p Cierra
+          p Precio
+        div(class="card-15-colm")
+          i(class="icon-gray icon-l")
+          p= lugar.horario.lunes.apertura
+          p= lugar.horario.lunes.cierre
+          p $#{lugar.horario.lunes.precio}
+        div(class="card-15-colm")
+          i(class="icon-gray icon-m")
+          p= lugar.horario.martes.apertura
+          p= lugar.horario.martes.cierre
+          p $#{lugar.horario.martes.precio}
+        div(class="card-15-colm")
+          i(class="icon-gray icon-x")
+          p= lugar.horario.miercoles.apertura
+          p= lugar.horario.miercoles.cierre
+          p $#{lugar.horario.miercoles.precio}
+        div(class="card-15-colm")
+          i(class="icon-gray icon-j")
+          p= lugar.horario.jueves.apertura
+          p= lugar.horario.jueves.cierre
+          p $#{lugar.horario.jueves.precio}
+        div(class="card-15-colm")
+          i(class="icon-gray icon-vier")
+          p= lugar.horario.viernes.apertura
+          p= lugar.horario.viernes.cierre
+          p $#{lugar.horario.viernes.precio}
+        div(class="card-15-colm")
+          i(class="icon-gray icon-s")
+          p= lugar.horario.sabado.apertura
+          p= lugar.horario.sabado.cierre
+          p $#{lugar.horario.sabado.precio}
+        div(class="card-15-colm")
+          i(class="icon-gray icon-d")
+          p= lugar.horario.domingo.apertura
+          p= lugar.horario.domingo.cierre
+          p $#{lugar.horario.domingo.precio}
+      
+      p(class="section-header") Precio Especial
+      div(class="precio-especial card-row")
+        div(class="card-5-colm")
+          p(class="header-tabler") Menores
+          p $#{lugar.precio.menores} 
+        div(class="card-5-colm")
+          p(class="header-tabler") INAPAM
+          p $#{lugar.precio.inapam} 
+        div(class="card-5-colm")
+          p(class="header-tabler") Discapacitados
+          p $#{lugar.precio.discapacitados} 
+        div(class="card-5-colm")
+          p(class="header-tabler") Pensionados y jubilados
+          p $#{lugar.precio.pensionados} 
+        div(class="card-5-colm")
+          p(class="header-tabler") Maestros y estudiantes
+          p $#{lugar.precio.estudiantes} 
+      p(class="section-header") Fotos
+      p(class="section-header") Consejos
+    div(class="card-atractivo-destino")
+      a(href="/home/tablero/#{lugar.destino.clave}") 
+        p= lugar.destino.nombre

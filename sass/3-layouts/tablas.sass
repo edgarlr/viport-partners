@@ -11,15 +11,26 @@
     padding: .3em 0 .3em 2em
     text-align: left
     border-bottom: 1px solid #ddd
-    color: $verde
+    color: $color-acento-secundario
     font-weight: 400
   td
     padding: .7em 0 .7em 2em
     text-align: left
     border-bottom: 1px solid #ddd
-    color: $gris-titulos
+    color: $titulos-color
     font-weight: 300
     font-size: .95em
+    a
+      text-decoration: none
+      &:hover, &:visited, &:active, &:link
+        color: $titulos-color
+    &:first-child
+      width: 18em
+      max-width: 18em
+    &:nth-child(3)
+      width: 15em
+      font-size: .85em
+      color: $texto-color
   tbody
     tr:hover
         background-color: white

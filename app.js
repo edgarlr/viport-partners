@@ -4,6 +4,7 @@ const path = require('path');
 const formidable = require('express-formidable');
 const User = require('./models/user').User;
 const cookieSession = require('cookie-session');
+const async = require('async');
 const routerApp = require("./routesApp");
 const routerAdmin = require("./routesAdmin");
 const session_middleware = require('./middlewares/session');
@@ -31,21 +32,35 @@ app.use(cookieSession({
 app.set("view engine", "jade");
 
 app.get("/", function (req, res) {
-  res.render("index")
+  if (req.session.user_id == null) {
+    res.redirect("/home")
+  }else {
+    res.render("index")
 });
 
 app.post("/sessions", function (req, res) {
   User.findOne({username: req.fields.username, password: req.fields.password}, function (err, user) {
-    console.log(user);
-    req.session.userAccess = user.acceso;
-    req.session.user_id = user._id;
-    res.redirect("/home")
+    if (!user || err) {
+      res.redirect("/")
+    }else {
+      req.session.userAccess = user.acceso;
+      req.session.user_id = user._id;
+      res.redirect("/home")
+    }
   })
 });
+
 
 app.use("/admin", admin_session, session_middleware);
 app.use("/admin", routerAdmin);
 app.use("/home", session_middleware)
 app.use("/home", routerApp);
+
+/*
+app.use(function(req, res, next) {
+  res.status(404).render('404');
+  res.end();
+});
+*/
 
 app.listen(8080);

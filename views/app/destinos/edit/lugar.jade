@@ -1,0 +1,165 @@
+extends ../../layout.jade
+block contenido
+  div(class="contenido")
+    div(class="form-new")
+      form(method="POST", action="/home/atractivos/lugares/#{lugar._id}?_method=PUT")
+        div(class="form")
+          div(class="form-row")
+            div(class="row-3-group")
+              label(for="title") Título
+              input(id="title", type="text", name="title", placeholder="Ej. Museo del Juguete Antiguo, MUJAM", class="form-input" required value="#{lugar.title}")
+            div(class="row-1-group")
+              label(for="destino") Destino
+              select(id="destino", name="destino", class="form-select")
+                each destino in destinos
+                  option(value="#{destino._id}") #{destino.nombre}
+          div
+            label(for="description") Descripción
+            textarea(id="description", name="description", placeholder="Descripción", class="form-textarea" required) #{lugar.description}
+          div(class="form-row")
+            div(class="row-2-group" id="input-tel")
+              input(type="hidden", name="iterador_telefono", id="iterador-telefono", value="1")
+              for value, i in lugar.tel
+                if i == 0
+                  label(for="telefono_0") Teléfono
+                  input(id="telefono-0", type="tel", name="telefono_0", placeholder="Ej. 5587654321", class="form-input-add" value="#{lugar.tel[0]}")
+                  button(class="add-input-btn" onclick="addInputTel()" type="button") 
+                    i(class="icon-gray icon-mas")
+                else
+                  input(id="telefono-#{i}" type="tel" name="telefono_#{i}" placeholder="Ej. 5587654321" class="form-input-add" value="#{value}")
+                  button(onclick="deleteInputTel(#{i})" type="button" class="delete-input-btn" id="tel-btn-#{i}")
+                    i(class="icon-gray icon-salir")
+            div(class="row-2-group", style="margin: 0;" id="input-web")
+              input(type="hidden", name="iterador_web", id="iterador-web", value="i")
+              for value, i in lugar.website
+                if i == 0
+                  label(for="website_0") Sitio Web
+                  input(id="website-0", type="text", name="website_0", placeholder="sitioweb.com", class="form-input-add", value="#{lugar.website[0]}")
+                  button(class="add-input-btn" onclick="addInputWeb()" type="button") 
+                    i(class="icon-gray icon-mas")
+                else
+                  input(id="website-#{i}" type="text" name="website_#{i}" placeholder="Ej. Sitio Web, Facebook, Twitter, etc." class="form-input-add" value="#{value}")
+                  button(onclick="deleteInputWeb(#{i})" type="button" class="delete-input-btn" id="website-btn-#{i}")
+                    i(class="icon-gray icon-salir")
+          div
+            label(for="adress") Dirección
+            input(id="adress", type="text", name="adress", placeholder="Calle, n°, colonia, delegación.", class="form-input" value="#{lugar.adress}")
+          div(class="form-section-header")
+            p Horario
+          div(class="form-row")
+            div(class="row-7-group")
+              label(for="lunes_apertura") Lunes
+              input(id="lunes_apertura", type="time", name="lunes_apertura", class="form-input-time" value="#{lugar.horario.lunes.apertura}")       
+              label(for="lunes_cierre")
+              input(id="lunes_cierre", type="time", name="lunes_cierre", class="form-input-time" value="#{lugar.horario.lunes.cierre}")  
+              label(for="lunes_precio")
+              input(id="lunes_precio", type="number", name="lunes_precio" class="form-input-num", placeholder="$" value="#{lugar.horario.lunes.precio}")
+            div(class="row-7-group")
+              label(for="martes_apertura") Martes
+              input(id="martes_apertura", type="time", name="martes_apertura", class="form-input-time"  value="#{lugar.horario.martes.apertura}")
+              label(for="martes_cierre")
+              input(id="martes_cierre", type="time", name="martes_cierre", class="form-input-time"  value="#{lugar.horario.martes.cierre}")  
+              label(for="martes_precio")
+              input(id="martes_precio", type="number", name="martes_precio" class="form-input-num", placeholder="$"  value="#{lugar.horario.martes.precio}")
+            div(class="row-7-group")
+              label(for="miercoles_apertura") Miercoles
+              input(id="miercoles_apertura", type="time", name="miercoles_apertura", class="form-input-time"  value="#{lugar.horario.miercoles.apertura}")
+              label(for="miercoles_cierre")
+              input(id="miercoles_cierre", type="time", name="miercoles_cierre", class="form-input-time"  value="#{lugar.horario.miercoles.cierre}")  
+              label(for="miercoles_precio")
+              input(id="miercoles_precio", type="number", name="miercoles_precio" class="form-input-num", placeholder="$"  value="#{lugar.horario.miercoles.precio}")
+            div(class="row-7-group")
+              label(for="jueves_apertura") Jueves
+              input(id="jueves_apertura", type="time", name="jueves_apertura", class="form-input-time"  value="#{lugar.horario.jueves.apertura}")
+              label(for="jueves_cierre")
+              input(id="jueves_cierre", type="time", name="jueves_cierre", class="form-input-time"  value="#{lugar.horario.jueves.cierre}")  
+              label(for="jueves_precio")
+              input(id="jueves_precio", type="number", name="jueves_precio" class="form-input-num", placeholder="$"  value="#{lugar.horario.jueves.precio}")
+            div(class="row-7-group")
+              label(for="viernes_apertura") Viernes
+              input(id="viernes_apertura", type="time", name="viernes_apertura", class="form-input-time"  value="#{lugar.horario.viernes.apertura}")
+              label(for="viernes_cierre")
+              input(id="viernes_cierre", type="time", name="viernes_cierre", class="form-input-time"  value="#{lugar.horario.viernes.cierre}")  
+              label(for="viernes_precio")
+              input(id="viernes_precio", type="number", name="viernes_precio" class="form-input-num", placeholder="$"  value="#{lugar.horario.viernes.precio}")
+            div(class="row-7-group")
+              label(for="sabado_apertura") Sábado
+              input(id="sabado_apertura", type="time", name="sabado_apertura", class="form-input-time"  value="#{lugar.horario.sabado.apertura}")
+              label(for="sabado_cierre")
+              input(id="sabado_cierre", type="time", name="sabado_cierre", class="form-input-time"  value="#{lugar.horario.sabado.cierre}")  
+              label(for="sabado_precio")
+              input(id="sabado_precio", type="number", name="sabado_precio" class="form-input-num", placeholder="$"  value="#{lugar.horario.sabado.precio}")
+            div(class="row-7-group")
+              label(for="domingo_apertura") Domingo
+              input(id="domingo_apertura", type="time", name="domingo_apertura", class="form-input-time"  value="#{lugar.horario.domingo.apertura}")    
+              label(for="domingo_cierre")
+              input(id="domingo_cierre", type="time", name="domingo_cierre", class="form-input-time"  value="#{lugar.horario.domingo.cierre}")  
+              label(for="domingo_precio")
+              input(id="domingo_precio", type="number", name="domingo_precio" class="form-input-num", placeholder="$"  value="#{lugar.horario.domingo.precio}")
+          div(class="form-section-header")
+            p Precio Especial
+          div(class="form-row")
+            div(class="row-5-group")
+              label(for="menores_precio") > 13 años
+              input(id="menores_precio", type="number", name="menores_precio" class="form-input-num", placeholder="$"  value="#{lugar.precio.menores}")
+            div(class="row-5-group")
+              label(for="inapam_precio") INAPAM
+              input(id="inapam_precio", type="number", name="inapam_precio" class="form-input-num", placeholder="$" value="#{lugar.precio.inapam}") 
+            div(class="row-5-group")
+              label(for="discapacitados_precio") Discapacitados
+              input(id="discapacitados_precio", type="number", name="discapacitados_precio" class="form-input-num", placeholder="$" value="#{lugar.precio.discapacitados}")
+            div(class="row-5-group")
+              label(for="pensionados_precio") Pensionados
+              input(id="pensionados_precio", type="number", name="pensionados_precio" class="form-input-num", placeholder="$" value="#{lugar.precio.pensionados}")
+            div(class="row-5-group")
+              label(for="estudiantes_precio") Estudiantes
+              input(id="estudiantes_precio", type="number", name="estudiantes_precio" class="form-input-num", placeholder="$" value="#{lugar.precio.estudiantes}")
+          div(class="form-section-header")
+            p Cuenta con...
+          div(class="form-row")
+            div(class="row-4-group")
+              div
+                input(type="checkbox", id="checkbox_petfriendly", name="checkbox_petfriendly" class="form-input-checkbox")
+                label(for="checkbox_petfriendly") PetFriendly 
+              div
+                input(type="checkbox", id="checkbox_estacionamiento", name="checkbox_estacionamiento" class="form-input-checkbox")
+                label(for="checkbox_estacionamiento") Estacionamiento
+              div
+                input(type="checkbox", id="checkbox_souvenirs", name="checkbox_souvenirs" class="form-input-checkbox")
+                label(for="checkbox_souvenirs") Tienda de souvenirs
+            div(class="row-4-group")
+              div
+                input(type="checkbox", id="checkbox_paqueteria", name="checkbox_paqueteria" class="form-input-checkbox")
+                label(for="checkbox_paqueteria") Paquetería 
+              div
+                input(type="checkbox", id="checkbox_banos", name="checkbox_banos" class="form-input-checkbox")
+                label(for="checkbox_banos") Baños 
+              div
+                input(type="checkbox", id="checkbox_discapacitados", name="checkbox_discapacitados" class="form-input-checkbox")
+                label(for="checkbox_discapacitados") Acceso a discapacitados
+            div(class="row-4-group")
+              div
+                input(type="checkbox", id="checkbox_fumadores", name="checkbox_fumadores" class="form-input-checkbox")
+                label(for="checkbox_fumadores") Área para fumar 
+              div
+                input(type="checkbox", id="checkbox_touroguia", name="checkbox_touroguia" class="form-input-checkbox")
+                label(for="checkbox_touroguia") Touroguía
+              div
+                input(type="checkbox", id="checkbox_nochesmuseos", name="checkbox_nochesmuseos" class="form-input-checkbox")
+                label(for="checkbox_nochesmuseos") Noches de Museos(Pertenece)
+            div(class="row-4-group")
+              div
+                input(type="checkbox", id="checkbox_wifi", name="checkbox_wifi" class="form-input-checkbox")
+                label(for="checkbox_wifi") Zona Wi-Fi
+              div
+                input(type="checkbox", id="checkbox_parquimetro", name="checkbox_parquimetro" class="form-input-checkbox")
+                label(for="checkbox_parquimetro") Parquimetro
+          div(class="form-section-header")
+            p Agregar un consejo
+          div(class="form-section-header")
+            p Agregar una experiencia
+          input(type="hidden", value="#{lugar.destino.clave}", name="destino_hidden")
+                
+        div
+          div(class="botones-inferiores right-align")
+            input(type="submit", value="Guardar", class="btn-relleno form-submit" onclick="setHiddenInputValue()")

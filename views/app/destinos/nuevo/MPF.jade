@@ -2,33 +2,26 @@ extends ../../layout.jade
 block contenido
   div(class="contenido")
     div(class="form-new")
-      form(method="POST", action="/admin/tablero")
+      form(method="POST", action="/home/atractivos/mpf")
         div(class="form")
           div(class="form-row")
             div(class="row-3-group")
-              label(for="clave") Clave
-              input(id="clave", type="text", name="clave", placeholder="Clave", class="form-input")
+              label(for="title") Título
+              input(id="title", type="text", name="title", placeholder="Ej. Monumento a la Madre", class="form-input" required)
             div(class="row-1-group")
               label(for="destino") Destino
               select(id="destino", name="destino", class="form-select")
                 each destino in destinos
-                  option(value="#{destino.nombre}") #{destino.nombre}
+                  option(value="#{destino._id}") #{destino.nombre}
           div
-            label(for="name") Nombre
-            input(id="name", type="text", name="name", placeholder="Nombre", class="form-input")
+            label(for="type") Tipo
+            input(id="type", type="text", name="type", placeholder="Monumento, Parque, Fuente, Etc." class="form-input")
           div
             label(for="description") Descripción
             textarea(id="description", name="description", placeholder="Descripción", class="form-textarea")
           div
             label(for="adress") Dirección
             input(id="adress", type="text", name="adress", placeholder="Calle, n°, colonia, delegación.", class="form-input")
-          div(class="row-form-header")
-            p(class="col-95") Sabias qué
-            button(class="col-5" class="form-btn-icon")
-              i(class="icon-gray icon-mas icon-tableHeader")  
-          //-div
-            label(for="sabiasque") Sabias qué
-            input(id="sabiasque", type="text", name="sabiasque", placeholder="Sabias qué", class="form-input")
         div
           div(class="botones-inferiores right-align")
             input(type="submit", value="Crear", class="btn-relleno form-submit")

@@ -1,0 +1,17 @@
+extends ../../layout.jade
+block contenido
+  div(class="contenido fila-row")
+    div(class="card-consejo")
+      div(class="card-row")
+        div(class="card-3-colm actions")
+          i(class="icon-gray icon-megusta")
+        div(class="card-6-colm main-header")
+          i(class="icon-pink icon-consejos")
+          h1 Consejos
+        div(class="card-3-colm actions")
+          i(class="icon-gray icon-mas")
+      div(class="content")
+        p= consejo.title
+    div(class="card-atractivo-destino")
+      a(href="/home/tablero/#{consejo.destino.clave}") 
+        p= consejo.destino.nombre

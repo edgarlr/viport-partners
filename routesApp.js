@@ -1,7 +1,15 @@
 const express = require('express');
+const routerAtractivos = require("./routesAtractivos");
 const User = require('./models/user').User;
+const async = require('async');
 const Destino = require('./models/destino');
-const Consejo = require('./models/consejo');
+//Atractivos
+const Consejo = require('./models/atractivos/consejo');
+const Sabiasque = require('./models/atractivos/sabiasque');
+const Experiencia = require('./models/atractivos/experiencia');
+const Lugar = require('./models/atractivos/lugar');
+const Mpf = require('./models/atractivos/mpf');
+//Middlewares
 const destino_finder_middleware = require('./middlewares/find_destino');
 const destinos_finder_middleware = require('./middlewares/find_destinos');
 
@@ -12,6 +20,7 @@ router.get("/", function (req, res) {
   res.render("app/home", { pageName: "Inicio" })
 });
 
+  //middleware
 router.all("/tablero*", destinos_finder_middleware);
 
 /*Tableros*/
@@ -19,83 +28,49 @@ router.get("/tablero", function (req, res) {
   res.render("app/tablero", {destinos: res.locals.destinos, pageName: "Tableros"});
 });
 
-/*Lugar*/
-  //Nuevo
-router.get("/tablero/nuevo-lugar", function (req, res) {
-  res.render("app/destinos/nuevo/lugar", {destinos: res.locals.destinos, pageName: "Nuevo Lugar"});
-});
-
-router.get("/tablero/:lugar/editar", function (req, res) {
-  res.render("app/destinos/editar/lugar")
-})
-
-
-
-
-  //Monumento, Parque, etc.
-router.get("/tablero/nuevo-MPF", function (req, res) {
-  res.render("app/destinos/nuevo/MPF", {destinos: res.locals.destinos, pageName: "Nuevo monumento, fuente, etc."});
-})
-
-  //Ruta
-router.get("/tablero/nuevo-ruta", function (req, res) {
-res.render("app/destinos/nuevo/ruta", {destinos: res.locals.destinos, pageName: "Nueva Ruta"});
-})
-
-  /*Consejo*/
-//Nuevo
-router.get("/tablero/nuevo-consejo", function (req, res) {
-res.render("app/destinos/nuevo/consejo", {destinos: res.locals.destinos, pageName: "Nuevo Consejo"});
-})
-
-//Editar
-router.get("/tablero/:consejo/editar", function (req, res) {
-  res.render("app/destinos/edit/consejo", {pageName:"Editar Consejo"});
-})
-
-//Experiencia
-router.get("/tablero/nuevo-experiencia", function (req, res) {
-res.render("app/destinos/nuevo/experiencia", {destinos: res.locals.destinos, pageName: "Nueva Experiencia"});
-})
-
-//Sabias Qué
-router.get("/tablero/nuevo-sabiasque", function (req, res) {
-res.render("app/destinos/nuevo/sabiasque", {destinos: res.locals.destinos, pageName: "Nuevo Sabias Qué"});
-})
-
+/*Destinos*/
+  //middleware
 router.all("/tablero/:destino*", destino_finder_middleware);
 
-router.get("/tablero/:destino/:cont_clave/editar", function (req, res) {
-
-});
-
-router.route("tablero/:destino/:cont_clave")
-  .get(function (req, res) {
-
-  })
-  .put(function (req, res) {
-
-  })
-  .delete(function (req, res) {
-
+  //Finder for each destino
+router.get("/tablero/:destino", function (req, res) {
+  async.parallel({
+    Consejo: function(cb){
+      Consejo.find({destino: res.locals.destino._id})
+            .populate("creator")
+            .populate("destino")
+            .exec(cb);
+    },
+    Experiencia: function(cb){
+      Experiencia.find({destino: res.locals.destino._id})
+              .populate("creator")
+              .populate("destino")
+              .exec(cb);
+    },
+    Sabiasque: function(cb){
+      Sabiasque.find({destino: res.locals.destino._id})
+              .populate("creator")
+              .populate("destino")
+              .exec(cb);
+    },
+    Lugar: function(cb){
+      Lugar.find({destino: res.locals.destino._id})
+              .populate("creator")
+              .populate("destino")
+              .exec(cb);
+    },
+    Mpf: function(cb){
+      Mpf.find({destino: res.locals.destino._id})
+              .populate("creator")
+              .populate("destino")
+              .exec(cb);
+    }
+  }, function(err, results){
+    res.render("app/destinos/index", {pageName: res.locals.destino.nombre, results: results })
   });
-
-router.route("/tablero/:destino")
-  .get(function (req, res) {
-    res.render("app/destinos/index", {pageName: res.locals.destino.nombre});
-  })
-  .post(function (req, res) {
-
-  });
-
-/*Publicado*/
-router.get("/publicado", function (req, res) {
-  res.render("app/publicado", { pageName: "Publicado" })
 });
 
-router.get("/borradores", function (req, res) {
-  res.render("app/borradores", { pageName: "Borradores" })
-});
+//
 
 //REST opciones
 router.route("/opciones")
@@ -132,5 +107,8 @@ router.get("/cerrar-sesion", function (req, res) {
   req.session = null
   res.redirect("/")
 });
+
+router.use("/atractivos", destinos_finder_middleware);
+router.use("/atractivos", routerAtractivos);
 
 module.exports = router;

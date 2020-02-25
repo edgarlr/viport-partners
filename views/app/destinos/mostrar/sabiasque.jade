@@ -1,0 +1,23 @@
+extends ../../layout.jade
+block contenido
+  div(class="contenido fila-row")
+    div(class="card-consejo")
+      div(class="card-row")
+        div(class="card-3-colm actions")
+          i(class="icon-gray icon-megusta")
+        div(class="card-6-colm main-header")
+          i(class="icon-pink icon-pregunta")
+          h1 Sabías que
+        div(class="card-3-colm actions")
+          i(class="icon-gray icon-mas")
+      div(class="content")
+        p= sabiasque.title
+      div(style="text-align: center;")
+        button(class="desplegar-btn" id="btn-desplegar")
+          i(class="icon-green icon-desplegar" onclick="desplegarBtn();")
+    div(class="card-desplegada display-none" id="tarjeta-desplegada")
+      p= sabiasque.description
+    div(class="card-atractivo-destino")
+      a(href="/home/tablero/#{sabiasque.destino.clave}") 
+        p= sabiasque.destino.nombre
+    
